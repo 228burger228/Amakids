@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Amakids — центр развития детей. Ментальная арифметика, скорочтение, подготовка к школе, обучение чтению, спидкубинг." />
+  <title>Amakids — Центр развития детей</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Unbounded:wght@700;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ========== HEADER / NAV ========== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#" class="logo">
+        <span class="logo__ama">ama</span><span class="logo__kids">kids</span>
+      </a>
+
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="#courses" class="nav__link">Курсы</a></li>
+          <li><a href="#why" class="nav__link">Почему мы</a></li>
+          <li><a href="#results" class="nav__link">Результаты</a></li>
+          <li><a href="#contacts" class="nav__link">Контакты</a></li>
+          <li><a href="#jobs" class="nav__link nav__link--accent">Педагогам</a></li>
+        </ul>
+      </nav>
+
+      <button class="burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="hero">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <span class="hero__tag">Центр развития детей</span>
+        <h1 class="hero__title">
+          Раскроем <span class="accent">суперспособности</span> вашего ребёнка
+        </h1>
+        <p class="hero__sub">
+          Ментальная арифметика, скорочтение и ещё 3 уникальных направления для детей от 4 лет
+        </p>
+
+        <div class="hero__cta">
+          <a href="#signup" class="btn btn--primary" data-target="parent">
+            Записать ребёнка
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#jobs" class="btn btn--outline">
+            Я педагог
+          </a>
+        </div>
+      </div>
+
+      <div class="hero__visual">
+        <div class="reactions">
+
+          <div class="reaction reaction--1">
+            <div class="reaction__bubble">
+              Мама, я сосчитала быстрее калькулятора!
+            </div>
+            <div class="reaction__meta">
+              <div class="reaction__avatar">А</div>
+              <div>
+                <strong>Аня, 8 лет</strong>
+                <span>ментальная арифметика</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="reaction reaction--2">
+            <div class="reaction__bubble">
+              Я не хочу домой, можно ещё одно занятие?
+            </div>
+            <div class="reaction__meta">
+              <div class="reaction__avatar reaction__avatar--blue">М</div>
+              <div>
+                <strong>Миша, 6 лет</strong>
+                <span>подготовка к школе</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="reaction reaction--3">
+            <div class="reaction__bubble">
+              Пап, смотри — я прочитал всю страницу за минуту!
+            </div>
+            <div class="reaction__meta">
+              <div class="reaction__avatar reaction__avatar--green">Д</div>
+              <div>
+                <strong>Дима, 10 лет</strong>
+                <span>скорочтение</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="reaction reaction--4">
+            <div class="reaction__bubble">
+              Я собрал кубик! Сам! Первый раз!
+            </div>
+            <div class="reaction__meta">
+              <div class="reaction__avatar reaction__avatar--purple">С</div>
+              <div>
+                <strong>Серёжа, 9 лет</strong>
+                <span>спидкубинг</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__stats">
+      <div class="container hero__stats-inner">
+        <div class="stat">
+          <span class="stat__num">500+</span>
+          <span class="stat__label">выпускников</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num">5</span>
+          <span class="stat__label">направлений</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num">4+</span>
+          <span class="stat__label">года работы</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num">98%</span>
+          <span class="stat__label">довольных родителей</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== COURSES ========== -->
+  <section class="section courses" id="courses">
+    <div class="container">
+      <div class="section__head">
+        <span class="section__tag">Направления</span>
+        <h2 class="section__title">Что мы развиваем</h2>
+        <p class="section__sub">Каждый курс — это уникальная методика с доказанным результатом</p>
+      </div>
+
+      <div class="courses__grid">
+
+        <article class="course-card course-card--orange">
+          <div class="course-card__icon">🧮</div>
+          <h3 class="course-card__title">Ментальная арифметика</h3>
+          <p class="course-card__desc">Ребёнок учится считать в уме быстрее калькулятора с помощью техники абакус. Развивает оба полушария мозга.</p>
+          <ul class="course-card__list">
+            <li>Возраст: 5–12 лет</li>
+            <li>Длительность: 1,5 года</li>
+            <li>Скорость счёта ×10</li>
+          </ul>
+          <a href="#signup" class="btn btn--card">Записаться</a>
+        </article>
+
+        <article class="course-card course-card--blue">
+          <div class="course-card__icon">📖</div>
+          <h3 class="course-card__title">Скорочтение</h3>
+          <p class="course-card__desc">Техника быстрого чтения с полным пониманием текста. Ребёнок читает книгу там, где другие — страницу.</p>
+          <ul class="course-card__list">
+            <li>Возраст: 7–14 лет</li>
+            <li>Скорость: до 1500 слов/мин</li>
+            <li>Память и концентрация</li>
+          </ul>
+          <a href="#signup" class="btn btn--card">Записаться</a>
+        </article>
+
+        <article class="course-card course-card--green">
+          <div class="course-card__icon">🎓</div>
+          <h3 class="course-card__title">Подготовка к школе</h3>
+          <p class="course-card__desc">Комплексная программа: счёт, письмо, логика, внимание. Ребёнок идёт в первый класс уверенно и с радостью.</p>
+          <ul class="course-card__list">
+            <li>Возраст: 5–7 лет</li>
+            <li>Формат: 2 раза в неделю</li>
+            <li>Плавный старт в школе</li>
+          </ul>
+          <a href="#signup" class="btn btn--card">Записаться</a>
+        </article>
+
+        <article class="course-card course-card--purple">
+          <div class="course-card__icon">🔤</div>
+          <h3 class="course-card__title">Обучение чтению</h3>
+          <p class="course-card__desc">Авторская методика слогового чтения. Дети начинают читать легко и с удовольствием уже через 2–3 месяца.</p>
+          <ul class="course-card__list">
+            <li>Возраст: 4–6 лет</li>
+            <li>Без стресса и принуждения</li>
+            <li>Игровой формат</li>
+          </ul>
+          <a href="#signup" class="btn btn--card">Записаться</a>
+        </article>
+
+        <article class="course-card course-card--red">
+          <div class="course-card__icon">🎲</div>
+          <h3 class="course-card__title">Спидкубинг</h3>
+          <p class="course-card__desc">Сборка кубика Рубика на скорость. Тренирует алгоритмическое мышление, память и мелкую моторику.</p>
+          <ul class="course-card__list">
+            <li>Возраст: 7–16 лет</li>
+            <li>От новичка до чемпиона</li>
+            <li>Участие в турнирах</li>
+          </ul>
+          <a href="#signup" class="btn btn--card">Записаться</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WHY US ========== -->
+  <section class="section why" id="why">
+    <div class="container">
+      <div class="section__head">
+        <span class="section__tag">Почему Amakids</span>
+        <h2 class="section__title">Мы не просто кружок</h2>
+      </div>
+
+      <div class="why__grid">
+        <div class="why__item">
+          <div class="why__icon">🏆</div>
+          <h3>Федеральная сеть</h3>
+          <p>Более 300 центров по России. Проверенная методика и единые стандарты качества.</p>
+        </div>
+        <div class="why__item">
+          <div class="why__icon">🧠</div>
+          <h3>Научный подход</h3>
+          <p>Программы разработаны педагогами и нейропсихологами. Развиваем оба полушария мозга.</p>
+        </div>
+        <div class="why__item">
+          <div class="why__icon">❤️</div>
+          <h3>Любовь к делу</h3>
+          <p>Кристина и её команда — не просто преподаватели, а наставники, которые болеют за каждого ребёнка.</p>
+        </div>
+        <div class="why__item">
+          <div class="why__icon">📱</div>
+          <h3>Онлайн-кабинет</h3>
+          <p>Следите за прогрессом ребёнка через приложение. Все задания и оценки — в одном месте.</p>
+        </div>
+        <div class="why__item">
+          <div class="why__icon">🎯</div>
+          <h3>Гарантия результата</h3>
+          <p>Если через 3 месяца вы не увидите прогресса — вернём деньги. Такой уверенности нет у других.</p>
+        </div>
+        <div class="why__item">
+          <div class="why__icon">👨‍👩‍👧</div>
+          <h3>Уютная атмосфера</h3>
+          <p>Маленькие группы по 6–8 детей. Каждый ребёнок — на виду, каждый — важен.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RESULTS ========== -->
+  <section class="section results" id="results">
+    <div class="container">
+      <div class="section__head">
+        <span class="section__tag">Отзывы</span>
+        <h2 class="section__title">Родители о нас</h2>
+      </div>
+
+      <div class="reviews__grid">
+        <div class="review-card">
+          <div class="review-card__stars">★★★★★</div>
+          <p class="review-card__text">«Дочка пошла на ментальную арифметику в 6 лет. Уже через полгода считает трёхзначные числа быстрее меня! Педагоги — просто находка, Настя обожает занятия.»</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar">М</div>
+            <div>
+              <strong>Мария</strong>
+              <span>мама Насти, 7 лет</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-card__stars">★★★★★</div>
+          <p class="review-card__text">«Сын читал по слогам, мы переживали перед школой. За 3 месяца занятий — читает бегло и сам берёт книги. Спасибо Кристине и всей команде!»</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar">А</div>
+            <div>
+              <strong>Алексей</strong>
+              <span>папа Кирилла, 6 лет</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-card__stars">★★★★★</div>
+          <p class="review-card__text">«Сначала скептически отнеслась к спидкубингу, но теперь сын занял 2-е место на городских соревнованиях. Уверенность выросла — и в учёбе тоже!»</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar">О</div>
+            <div>
+              <strong>Ольга</strong>
+              <span>мама Дениса, 10 лет</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SIGNUP FORM (Parents) ========== -->
+  <section class="section signup" id="signup">
+    <div class="container">
+      <div class="signup__inner">
+        <div class="signup__text">
+          <span class="section__tag">Бесплатное занятие</span>
+          <h2 class="signup__title">Запишитесь на <span class="accent">пробный урок</span></h2>
+          <p>Первое занятие — бесплатно. Ребёнок попробует, вы увидите результат, а потом решите.</p>
+          <ul class="signup__perks">
+            <li>✅ Без обязательств</li>
+            <li>✅ Педагог подберёт курс</li>
+            <li>✅ Ответим за 15 минут</li>
+          </ul>
+        </div>
+
+        <div class="form-wrap" id="form-parent">
+          <h3 class="form-wrap__title">Для родителей</h3>
+          <div class="form">
+            <div class="form__group">
+              <input type="text" id="p-name" class="form__input" placeholder=" " required />
+              <label for="p-name" class="form__label">Ваше имя</label>
+            </div>
+            <div class="form__group">
+              <input type="text" id="p-child" class="form__input" placeholder=" " required />
+              <label for="p-child" class="form__label">Имя и возраст ребёнка</label>
+            </div>
+            <div class="form__group">
+              <input type="tel" id="p-phone" class="form__input" placeholder=" " required />
+              <label for="p-phone" class="form__label">Телефон</label>
+            </div>
+            <div class="form__group">
+              <select id="p-course" class="form__input form__select" required>
+                <option value="" disabled selected></option>
+                <option>Ментальная арифметика</option>
+                <option>Скорочтение</option>
+                <option>Подготовка к школе</option>
+                <option>Обучение чтению</option>
+                <option>Спидкубинг</option>
+                <option>Не знаю — помогите выбрать</option>
+              </select>
+              <label for="p-course" class="form__label form__label--select">Интересующий курс</label>
+            </div>
+            <button type="button" class="btn btn--primary btn--full" onclick="submitForm('parent')">
+              Записаться на пробный урок
+            </button>
+            <p class="form__agree">Нажимая кнопку, вы соглашаетесь с <a href="#">политикой конфиденциальности</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== JOBS (Teachers) ========== -->
+  <section class="section jobs" id="jobs">
+    <div class="container">
+      <div class="jobs__inner">
+        <div class="form-wrap form-wrap--dark" id="form-teacher">
+          <h3 class="form-wrap__title">Для педагогов</h3>
+          <div class="form">
+            <div class="form__group">
+              <input type="text" id="t-name" class="form__input" placeholder=" " required />
+              <label for="t-name" class="form__label">Ваше имя</label>
+            </div>
+            <div class="form__group">
+              <input type="tel" id="t-phone" class="form__input" placeholder=" " required />
+              <label for="t-phone" class="form__label">Телефон</label>
+            </div>
+            <div class="form__group">
+              <select id="t-direction" class="form__input form__select" required>
+                <option value="" disabled selected></option>
+                <option>Ментальная арифметика</option>
+                <option>Скорочтение</option>
+                <option>Подготовка к школе</option>
+                <option>Обучение чтению</option>
+                <option>Спидкубинг</option>
+              </select>
+              <label for="t-direction" class="form__label form__label--select">Направление</label>
+            </div>
+            <button type="button" class="btn btn--primary btn--full" onclick="submitForm('teacher')">
+              Хочу работать в Amakids
+            </button>
+          </div>
+        </div>
+
+        <div class="jobs__text">
+          <span class="section__tag section__tag--light">Вакансии</span>
+          <h2 class="jobs__title">Работайте там, где <span class="accent">важен каждый</span></h2>
+          <p>Мы ищем педагогов, которые любят детей и хотят развиваться вместе с нами.</p>
+          <div class="jobs__benefits">
+            <div class="jobs__benefit">
+              <span>🎓</span>
+              <div>
+                <strong>Обучение за наш счёт</strong>
+                <p>Полная подготовка по методике — бесплатно</p>
+              </div>
+            </div>
+            <div class="jobs__benefit">
+              <span>💰</span>
+              <div>
+                <strong>Достойная оплата</strong>
+                <p>Ставка + премия за результаты учеников</p>
+              </div>
+            </div>
+            <div class="jobs__benefit">
+              <span>🕐</span>
+              <div>
+                <strong>Гибкий график</strong>
+                <p>Работайте в удобное для вас время</p>
+              </div>
+            </div>
+            <div class="jobs__benefit">
+              <span>🌱</span>
+              <div>
+                <strong>Карьерный рост</strong>
+                <p>Становитесь старшим педагогом и куратором</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACTS ========== -->
+  <section class="section contacts" id="contacts">
+    <div class="container">
+      <div class="section__head">
+        <span class="section__tag">Контакты</span>
+        <h2 class="section__title">Приходите к нам</h2>
+      </div>
+      <div class="contacts__grid">
+        <div class="contact-item">
+          <div class="contact-item__icon">📍</div>
+          <h4>Адрес</h4>
+          <p>ул. Примерная, 1<br/>Ваш город</p>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item__icon">📞</div>
+          <h4>Телефон</h4>
+          <p><a href="tel:+79000000000">+7 (900) 000-00-00</a></p>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item__icon">🕐</div>
+          <h4>Режим работы</h4>
+          <p>Пн–Пт: 9:00 – 19:00<br/>Сб: 9:00 – 14:00</p>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item__icon">💬</div>
+          <h4>Мессенджеры</h4>
+          <div class="contact-item__links">
+            <a href="#" class="social-btn social-btn--wa">WhatsApp</a>
+            <a href="#" class="social-btn social-btn--tg">Telegram</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="#" class="logo">
+        <span class="logo__ama">ama</span><span class="logo__kids">kids</span>
+      </a>
+      <p class="footer__copy">© 2025 Amakids. Центр развития детей</p>
+      <a href="#" class="footer__privacy">Политика конфиденциальности</a>
+    </div>
+  </footer>
+
+  <!-- ========== MODAL SUCCESS ========== -->
+  <div class="modal" id="modal">
+    <div class="modal__box">
+      <button class="modal__close" onclick="closeModal()">✕</button>
+      <div class="modal__icon">🎉</div>
+      <h3 class="modal__title">Заявка отправлена!</h3>
+      <p class="modal__text" id="modal-text">Мы свяжемся с вами в течение 15 минут.</p>
+      <button class="btn btn--primary" onclick="closeModal()">Отлично!</button>
+    </div>
+  </div>
+  <div class="modal__overlay" id="modal-overlay" onclick="closeModal()"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
