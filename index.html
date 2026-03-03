@@ -1,492 +1,391 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Amakids — центр развития детей. Ментальная арифметика, скорочтение, подготовка к школе, обучение чтению, спидкубинг." />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="Amakids — центр развития детей. Ментальная арифметика, скорочтение, подготовка к школе, обучение чтению, спидкубинг."/>
   <title>Amakids — Центр развития детей</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Unbounded:wght@700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@700;900&display=swap" rel="stylesheet"/>
 </head>
 <body>
 
-  <!-- ========== HEADER / NAV ========== -->
-  <header class="header" id="header">
-    <div class="container header__inner">
-      <a href="#" class="logo">
-        <span class="logo__ama">ama</span><span class="logo__kids">kids</span>
-      </a>
+<!-- ═══════════════════ PRELOADER ═══════════════════ -->
+<div class="pre" id="pre">
+  <div class="pre-logo">ama<span>kids</span></div>
+  <div class="pre-bar"><div class="pre-fill"></div></div>
+</div>
 
-      <nav class="nav" id="nav">
-        <ul class="nav__list">
-          <li><a href="#courses" class="nav__link">Курсы</a></li>
-          <li><a href="#why" class="nav__link">Почему мы</a></li>
-          <li><a href="#results" class="nav__link">Результаты</a></li>
-          <li><a href="#contacts" class="nav__link">Контакты</a></li>
-          <li><a href="#jobs" class="nav__link nav__link--accent">Педагогам</a></li>
-        </ul>
-      </nav>
+<!-- ═══════════════════ CURSOR ═══════════════════ -->
+<div class="cur"  id="cur"></div>
+<div class="cur2" id="cur2"></div>
 
-      <button class="burger" id="burger" aria-label="Меню">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
+<!-- ═══════════════════ HEADER ═══════════════════ -->
+<header class="hdr" id="hdr">
+  <div class="w hi">
+    <a href="#" class="logo">ama<span>kids</span></a>
+    <nav class="nav" id="nav">
+      <ul class="nl">
+        <li><a href="#courses"  class="na">Курсы</a></li>
+        <li><a href="#why"      class="na">О нас</a></li>
+        <li><a href="#results"  class="na">Отзывы</a></li>
+        <li><a href="#contacts" class="na">Контакты</a></li>
+      </ul>
+      <a href="#signup" class="nb">Записаться</a>
+      <a href="#jobs"   class="nb nb2">Педагогам</a>
+    </nav>
+    <button class="bur" id="bur" aria-label="Меню">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
 
-  <!-- ========== HERO ========== -->
-  <section class="hero" id="hero">
-    <div class="container hero__inner">
-      <div class="hero__content">
-        <span class="hero__tag">Центр развития детей</span>
-        <h1 class="hero__title">
-          Раскроем <span class="accent">суперспособности</span> вашего ребёнка
-        </h1>
-        <p class="hero__sub">
-          Ментальная арифметика, скорочтение и ещё 3 уникальных направления для детей от 4 лет
-        </p>
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero" id="hero">
 
-        <div class="hero__cta">
-          <a href="#signup" class="btn btn--primary" data-target="parent">
-            Записать ребёнка
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="#jobs" class="btn btn--outline">
-            Я педагог
-          </a>
-        </div>
+  <!-- фон -->
+  <div class="hbg">
+    <img id="hbg-img" class="hbg-img"
+      src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1800&q=80&auto=format&fit=crop"
+      alt="Счастливые дети на занятии"/>
+    <div class="hov"></div>
+  </div>
+
+  <div class="w hin">
+
+    <!-- левая колонка -->
+    <div class="hcnt">
+      <div class="hey">
+        <span class="hdot"></span>
+        Центр развития детей · Amakids
       </div>
-
-      <div class="hero__visual">
-        <div class="reactions">
-
-          <div class="reaction reaction--1">
-            <div class="reaction__bubble">
-              Мама, я сосчитала быстрее калькулятора!
-            </div>
-            <div class="reaction__meta">
-              <div class="reaction__avatar">А</div>
-              <div>
-                <strong>Аня, 8 лет</strong>
-                <span>ментальная арифметика</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="reaction reaction--2">
-            <div class="reaction__bubble">
-              Я не хочу домой, можно ещё одно занятие?
-            </div>
-            <div class="reaction__meta">
-              <div class="reaction__avatar reaction__avatar--blue">М</div>
-              <div>
-                <strong>Миша, 6 лет</strong>
-                <span>подготовка к школе</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="reaction reaction--3">
-            <div class="reaction__bubble">
-              Пап, смотри — я прочитал всю страницу за минуту!
-            </div>
-            <div class="reaction__meta">
-              <div class="reaction__avatar reaction__avatar--green">Д</div>
-              <div>
-                <strong>Дима, 10 лет</strong>
-                <span>скорочтение</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="reaction reaction--4">
-            <div class="reaction__bubble">
-              Я собрал кубик! Сам! Первый раз!
-            </div>
-            <div class="reaction__meta">
-              <div class="reaction__avatar reaction__avatar--purple">С</div>
-              <div>
-                <strong>Серёжа, 9 лет</strong>
-                <span>спидкубинг</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
+      <h1 class="hh1">
+        Раскроем
+        <em>суперспособности</em>
+        вашего ребёнка
+      </h1>
+      <p class="hsub">5 направлений · Дети от 4 лет · Первое занятие бесплатно</p>
+      <div class="hcta">
+        <a href="#signup" class="btn-h">
+          Записать ребёнка
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#jobs" class="btn-g">Я педагог</a>
       </div>
     </div>
 
-    <div class="hero__stats">
-      <div class="container hero__stats-inner">
-        <div class="stat">
-          <span class="stat__num">500+</span>
-          <span class="stat__label">выпускников</span>
-        </div>
-        <div class="stat">
-          <span class="stat__num">5</span>
-          <span class="stat__label">направлений</span>
-        </div>
-        <div class="stat">
-          <span class="stat__num">4+</span>
-          <span class="stat__label">года работы</span>
-        </div>
-        <div class="stat">
-          <span class="stat__num">98%</span>
-          <span class="stat__label">довольных родителей</span>
+    <!-- правая колонка — реакции детей -->
+    <div class="rcol">
+      <div class="rc" data-d="300">
+        <p class="rcq">Мама, я сосчитала быстрее калькулятора!</p>
+        <div class="rca">
+          <div class="av av-or">А</div>
+          <div><strong>Аня, 8 лет</strong><span>Ментальная арифметика</span></div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ========== COURSES ========== -->
-  <section class="section courses" id="courses">
-    <div class="container">
-      <div class="section__head">
-        <span class="section__tag">Направления</span>
-        <h2 class="section__title">Что мы развиваем</h2>
-        <p class="section__sub">Каждый курс — это уникальная методика с доказанным результатом</p>
-      </div>
-
-      <div class="courses__grid">
-
-        <article class="course-card course-card--orange">
-          <div class="course-card__icon">🧮</div>
-          <h3 class="course-card__title">Ментальная арифметика</h3>
-          <p class="course-card__desc">Ребёнок учится считать в уме быстрее калькулятора с помощью техники абакус. Развивает оба полушария мозга.</p>
-          <ul class="course-card__list">
-            <li>Возраст: 5–12 лет</li>
-            <li>Длительность: 1,5 года</li>
-            <li>Скорость счёта ×10</li>
-          </ul>
-          <a href="#signup" class="btn btn--card">Записаться</a>
-        </article>
-
-        <article class="course-card course-card--blue">
-          <div class="course-card__icon">📖</div>
-          <h3 class="course-card__title">Скорочтение</h3>
-          <p class="course-card__desc">Техника быстрого чтения с полным пониманием текста. Ребёнок читает книгу там, где другие — страницу.</p>
-          <ul class="course-card__list">
-            <li>Возраст: 7–14 лет</li>
-            <li>Скорость: до 1500 слов/мин</li>
-            <li>Память и концентрация</li>
-          </ul>
-          <a href="#signup" class="btn btn--card">Записаться</a>
-        </article>
-
-        <article class="course-card course-card--green">
-          <div class="course-card__icon">🎓</div>
-          <h3 class="course-card__title">Подготовка к школе</h3>
-          <p class="course-card__desc">Комплексная программа: счёт, письмо, логика, внимание. Ребёнок идёт в первый класс уверенно и с радостью.</p>
-          <ul class="course-card__list">
-            <li>Возраст: 5–7 лет</li>
-            <li>Формат: 2 раза в неделю</li>
-            <li>Плавный старт в школе</li>
-          </ul>
-          <a href="#signup" class="btn btn--card">Записаться</a>
-        </article>
-
-        <article class="course-card course-card--purple">
-          <div class="course-card__icon">🔤</div>
-          <h3 class="course-card__title">Обучение чтению</h3>
-          <p class="course-card__desc">Авторская методика слогового чтения. Дети начинают читать легко и с удовольствием уже через 2–3 месяца.</p>
-          <ul class="course-card__list">
-            <li>Возраст: 4–6 лет</li>
-            <li>Без стресса и принуждения</li>
-            <li>Игровой формат</li>
-          </ul>
-          <a href="#signup" class="btn btn--card">Записаться</a>
-        </article>
-
-        <article class="course-card course-card--red">
-          <div class="course-card__icon">🎲</div>
-          <h3 class="course-card__title">Спидкубинг</h3>
-          <p class="course-card__desc">Сборка кубика Рубика на скорость. Тренирует алгоритмическое мышление, память и мелкую моторику.</p>
-          <ul class="course-card__list">
-            <li>Возраст: 7–16 лет</li>
-            <li>От новичка до чемпиона</li>
-            <li>Участие в турнирах</li>
-          </ul>
-          <a href="#signup" class="btn btn--card">Записаться</a>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== WHY US ========== -->
-  <section class="section why" id="why">
-    <div class="container">
-      <div class="section__head">
-        <span class="section__tag">Почему Amakids</span>
-        <h2 class="section__title">Мы не просто кружок</h2>
-      </div>
-
-      <div class="why__grid">
-        <div class="why__item">
-          <div class="why__icon">🏆</div>
-          <h3>Федеральная сеть</h3>
-          <p>Более 300 центров по России. Проверенная методика и единые стандарты качества.</p>
-        </div>
-        <div class="why__item">
-          <div class="why__icon">🧠</div>
-          <h3>Научный подход</h3>
-          <p>Программы разработаны педагогами и нейропсихологами. Развиваем оба полушария мозга.</p>
-        </div>
-        <div class="why__item">
-          <div class="why__icon">❤️</div>
-          <h3>Любовь к делу</h3>
-          <p>Кристина и её команда — не просто преподаватели, а наставники, которые болеют за каждого ребёнка.</p>
-        </div>
-        <div class="why__item">
-          <div class="why__icon">📱</div>
-          <h3>Онлайн-кабинет</h3>
-          <p>Следите за прогрессом ребёнка через приложение. Все задания и оценки — в одном месте.</p>
-        </div>
-        <div class="why__item">
-          <div class="why__icon">🎯</div>
-          <h3>Гарантия результата</h3>
-          <p>Если через 3 месяца вы не увидите прогресса — вернём деньги. Такой уверенности нет у других.</p>
-        </div>
-        <div class="why__item">
-          <div class="why__icon">👨‍👩‍👧</div>
-          <h3>Уютная атмосфера</h3>
-          <p>Маленькие группы по 6–8 детей. Каждый ребёнок — на виду, каждый — важен.</p>
+      <div class="rc" data-d="600">
+        <p class="rcq">Я не хочу домой, можно ещё одно занятие?</p>
+        <div class="rca">
+          <div class="av av-bl">М</div>
+          <div><strong>Миша, 6 лет</strong><span>Подготовка к школе</span></div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ========== RESULTS ========== -->
-  <section class="section results" id="results">
-    <div class="container">
-      <div class="section__head">
-        <span class="section__tag">Отзывы</span>
-        <h2 class="section__title">Родители о нас</h2>
-      </div>
-
-      <div class="reviews__grid">
-        <div class="review-card">
-          <div class="review-card__stars">★★★★★</div>
-          <p class="review-card__text">«Дочка пошла на ментальную арифметику в 6 лет. Уже через полгода считает трёхзначные числа быстрее меня! Педагоги — просто находка, Настя обожает занятия.»</p>
-          <div class="review-card__author">
-            <div class="review-card__avatar">М</div>
-            <div>
-              <strong>Мария</strong>
-              <span>мама Насти, 7 лет</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-card__stars">★★★★★</div>
-          <p class="review-card__text">«Сын читал по слогам, мы переживали перед школой. За 3 месяца занятий — читает бегло и сам берёт книги. Спасибо Кристине и всей команде!»</p>
-          <div class="review-card__author">
-            <div class="review-card__avatar">А</div>
-            <div>
-              <strong>Алексей</strong>
-              <span>папа Кирилла, 6 лет</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-card__stars">★★★★★</div>
-          <p class="review-card__text">«Сначала скептически отнеслась к спидкубингу, но теперь сын занял 2-е место на городских соревнованиях. Уверенность выросла — и в учёбе тоже!»</p>
-          <div class="review-card__author">
-            <div class="review-card__avatar">О</div>
-            <div>
-              <strong>Ольга</strong>
-              <span>мама Дениса, 10 лет</span>
-            </div>
-          </div>
+      <div class="rc" data-d="900">
+        <p class="rcq">Пап, смотри — я прочитал страницу за минуту!</p>
+        <div class="rca">
+          <div class="av av-gn">Д</div>
+          <div><strong>Дима, 10 лет</strong><span>Скорочтение</span></div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ========== SIGNUP FORM (Parents) ========== -->
-  <section class="section signup" id="signup">
-    <div class="container">
-      <div class="signup__inner">
-        <div class="signup__text">
-          <span class="section__tag">Бесплатное занятие</span>
-          <h2 class="signup__title">Запишитесь на <span class="accent">пробный урок</span></h2>
-          <p>Первое занятие — бесплатно. Ребёнок попробует, вы увидите результат, а потом решите.</p>
-          <ul class="signup__perks">
-            <li>✅ Без обязательств</li>
-            <li>✅ Педагог подберёт курс</li>
-            <li>✅ Ответим за 15 минут</li>
-          </ul>
-        </div>
-
-        <div class="form-wrap" id="form-parent">
-          <h3 class="form-wrap__title">Для родителей</h3>
-          <div class="form">
-            <div class="form__group">
-              <input type="text" id="p-name" class="form__input" placeholder=" " required />
-              <label for="p-name" class="form__label">Ваше имя</label>
-            </div>
-            <div class="form__group">
-              <input type="text" id="p-child" class="form__input" placeholder=" " required />
-              <label for="p-child" class="form__label">Имя и возраст ребёнка</label>
-            </div>
-            <div class="form__group">
-              <input type="tel" id="p-phone" class="form__input" placeholder=" " required />
-              <label for="p-phone" class="form__label">Телефон</label>
-            </div>
-            <div class="form__group">
-              <select id="p-course" class="form__input form__select" required>
-                <option value="" disabled selected></option>
-                <option>Ментальная арифметика</option>
-                <option>Скорочтение</option>
-                <option>Подготовка к школе</option>
-                <option>Обучение чтению</option>
-                <option>Спидкубинг</option>
-                <option>Не знаю — помогите выбрать</option>
-              </select>
-              <label for="p-course" class="form__label form__label--select">Интересующий курс</label>
-            </div>
-            <button type="button" class="btn btn--primary btn--full" onclick="submitForm('parent')">
-              Записаться на пробный урок
-            </button>
-            <p class="form__agree">Нажимая кнопку, вы соглашаетесь с <a href="#">политикой конфиденциальности</a></p>
-          </div>
+      <div class="rc" data-d="1200">
+        <p class="rcq">Я собрал кубик Рубика! Сам! С первого раза!</p>
+        <div class="rca">
+          <div class="av av-pu">С</div>
+          <div><strong>Серёжа, 9 лет</strong><span>Спидкубинг</span></div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ========== JOBS (Teachers) ========== -->
-  <section class="section jobs" id="jobs">
-    <div class="container">
-      <div class="jobs__inner">
-        <div class="form-wrap form-wrap--dark" id="form-teacher">
-          <h3 class="form-wrap__title">Для педагогов</h3>
-          <div class="form">
-            <div class="form__group">
-              <input type="text" id="t-name" class="form__input" placeholder=" " required />
-              <label for="t-name" class="form__label">Ваше имя</label>
-            </div>
-            <div class="form__group">
-              <input type="tel" id="t-phone" class="form__input" placeholder=" " required />
-              <label for="t-phone" class="form__label">Телефон</label>
-            </div>
-            <div class="form__group">
-              <select id="t-direction" class="form__input form__select" required>
-                <option value="" disabled selected></option>
-                <option>Ментальная арифметика</option>
-                <option>Скорочтение</option>
-                <option>Подготовка к школе</option>
-                <option>Обучение чтению</option>
-                <option>Спидкубинг</option>
-              </select>
-              <label for="t-direction" class="form__label form__label--select">Направление</label>
-            </div>
-            <button type="button" class="btn btn--primary btn--full" onclick="submitForm('teacher')">
-              Хочу работать в Amakids
-            </button>
-          </div>
-        </div>
-
-        <div class="jobs__text">
-          <span class="section__tag section__tag--light">Вакансии</span>
-          <h2 class="jobs__title">Работайте там, где <span class="accent">важен каждый</span></h2>
-          <p>Мы ищем педагогов, которые любят детей и хотят развиваться вместе с нами.</p>
-          <div class="jobs__benefits">
-            <div class="jobs__benefit">
-              <span>🎓</span>
-              <div>
-                <strong>Обучение за наш счёт</strong>
-                <p>Полная подготовка по методике — бесплатно</p>
-              </div>
-            </div>
-            <div class="jobs__benefit">
-              <span>💰</span>
-              <div>
-                <strong>Достойная оплата</strong>
-                <p>Ставка + премия за результаты учеников</p>
-              </div>
-            </div>
-            <div class="jobs__benefit">
-              <span>🕐</span>
-              <div>
-                <strong>Гибкий график</strong>
-                <p>Работайте в удобное для вас время</p>
-              </div>
-            </div>
-            <div class="jobs__benefit">
-              <span>🌱</span>
-              <div>
-                <strong>Карьерный рост</strong>
-                <p>Становитесь старшим педагогом и куратором</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== CONTACTS ========== -->
-  <section class="section contacts" id="contacts">
-    <div class="container">
-      <div class="section__head">
-        <span class="section__tag">Контакты</span>
-        <h2 class="section__title">Приходите к нам</h2>
-      </div>
-      <div class="contacts__grid">
-        <div class="contact-item">
-          <div class="contact-item__icon">📍</div>
-          <h4>Адрес</h4>
-          <p>ул. Примерная, 1<br/>Ваш город</p>
-        </div>
-        <div class="contact-item">
-          <div class="contact-item__icon">📞</div>
-          <h4>Телефон</h4>
-          <p><a href="tel:+79000000000">+7 (900) 000-00-00</a></p>
-        </div>
-        <div class="contact-item">
-          <div class="contact-item__icon">🕐</div>
-          <h4>Режим работы</h4>
-          <p>Пн–Пт: 9:00 – 19:00<br/>Сб: 9:00 – 14:00</p>
-        </div>
-        <div class="contact-item">
-          <div class="contact-item__icon">💬</div>
-          <h4>Мессенджеры</h4>
-          <div class="contact-item__links">
-            <a href="#" class="social-btn social-btn--wa">WhatsApp</a>
-            <a href="#" class="social-btn social-btn--tg">Telegram</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== FOOTER ========== -->
-  <footer class="footer">
-    <div class="container footer__inner">
-      <a href="#" class="logo">
-        <span class="logo__ama">ama</span><span class="logo__kids">kids</span>
-      </a>
-      <p class="footer__copy">© 2025 Amakids. Центр развития детей</p>
-      <a href="#" class="footer__privacy">Политика конфиденциальности</a>
-    </div>
-  </footer>
-
-  <!-- ========== MODAL SUCCESS ========== -->
-  <div class="modal" id="modal">
-    <div class="modal__box">
-      <button class="modal__close" onclick="closeModal()">✕</button>
-      <div class="modal__icon">🎉</div>
-      <h3 class="modal__title">Заявка отправлена!</h3>
-      <p class="modal__text" id="modal-text">Мы свяжемся с вами в течение 15 минут.</p>
-      <button class="btn btn--primary" onclick="closeModal()">Отлично!</button>
     </div>
   </div>
-  <div class="modal__overlay" id="modal-overlay" onclick="closeModal()"></div>
 
-  <script src="js/main.js"></script>
-  <script src="main.js"></script>
+  <!-- статистика -->
+  <div class="hst-wrap">
+    <div class="w hst-row">
+      <div class="hst"><span class="hst-n" data-cnt="500">0</span><span class="hst-p">+</span><span class="hst-l">выпускников</span></div>
+      <div class="hst"><span class="hst-n" data-cnt="5">0</span><span class="hst-l">направлений</span></div>
+      <div class="hst"><span class="hst-n" data-cnt="4">0</span><span class="hst-p">+</span><span class="hst-l">лет работы</span></div>
+      <div class="hst"><span class="hst-n" data-cnt="98">0</span><span class="hst-p">%</span><span class="hst-l">довольных родителей</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ COURSES ═══════════════════ -->
+<section class="sec courses" id="courses">
+  <div class="w">
+    <div class="sh">
+      <p class="lb">Направления</p>
+      <h2 class="st">Что мы <em>развиваем</em></h2>
+      <p class="ss">Каждый курс — уникальная методика с доказанным результатом</p>
+    </div>
+    <div class="cg">
+
+      <article class="cc" data-c="or">
+        <div class="ccn">01</div>
+        <div class="cci">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8l2 2 4-4"/></svg>
+        </div>
+        <h3 class="cct">Ментальная арифметика</h3>
+        <p class="ccd">Считает в уме быстрее калькулятора. Метод абакус развивает оба полушария мозга одновременно.</p>
+        <div class="cctg"><span>5–12 лет</span><span>1,5 года</span><span>×10 скорость</span></div>
+        <a href="#signup" class="ccl">Записаться <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </article>
+
+      <article class="cc" data-c="bl">
+        <div class="ccn">02</div>
+        <div class="cci">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <h3 class="cct">Скорочтение</h3>
+        <p class="ccd">Читает книгу там, где другие — страницу. До 1500 слов в минуту с полным пониманием текста.</p>
+        <div class="cctg"><span>7–14 лет</span><span>1500 сл/мин</span><span>Память</span></div>
+        <a href="#signup" class="ccl">Записаться <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </article>
+
+      <article class="cc" data-c="gn">
+        <div class="ccn">03</div>
+        <div class="cci">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <h3 class="cct">Подготовка к школе</h3>
+        <p class="ccd">Счёт, письмо, логика, внимание. Ребёнок идёт в первый класс уверенно и с радостью.</p>
+        <div class="cctg"><span>5–7 лет</span><span>2×/неделю</span><span>Комплексно</span></div>
+        <a href="#signup" class="ccl">Записаться <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </article>
+
+      <article class="cc" data-c="pu">
+        <div class="ccn">04</div>
+        <div class="cci">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <h3 class="cct">Обучение чтению</h3>
+        <p class="ccd">Авторская методика слогового чтения. Начинают читать легко и с удовольствием за 2–3 месяца.</p>
+        <div class="cctg"><span>4–6 лет</span><span>Без стресса</span><span>Игровой</span></div>
+        <a href="#signup" class="ccl">Записаться <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </article>
+
+      <article class="cc" data-c="rd">
+        <div class="ccn">05</div>
+        <div class="cci">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M6 12h12M12 6v12"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h3 class="cct">Спидкубинг</h3>
+        <p class="ccd">Сборка кубика Рубика на скорость. Алгоритмическое мышление, память, моторика и турниры.</p>
+        <div class="cctg"><span>7–16 лет</span><span>Турниры</span><span>Алгоритмы</span></div>
+        <a href="#signup" class="ccl">Записаться <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ WHY ═══════════════════ -->
+<section class="why" id="why">
+  <div class="wbg">
+    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=1600&q=80&auto=format&fit=crop" alt=""/>
+    <div class="wbgo"></div>
+  </div>
+  <div class="w win">
+    <div class="wl">
+      <p class="lb lt">Почему Amakids</p>
+      <h2 class="st wh">Мы не просто <em>кружок</em></h2>
+      <p class="wsub">Amakids — федеральная сеть из 300+ центров с научно обоснованными методиками, которые реально работают у тысяч детей.</p>
+      <a href="#signup" class="btn-wh">Попробовать бесплатно</a>
+    </div>
+    <div class="wgr">
+      <div class="wi"><div class="wii"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><h3>Федеральная сеть</h3><p>300+ центров по России. Единые стандарты и проверенная методика.</p></div>
+      <div class="wi"><div class="wii"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><h3>Научный подход</h3><p>Программы от нейропсихологов. Развиваем оба полушария мозга.</p></div>
+      <div class="wi"><div class="wii"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h3>Мини-группы</h3><p>6–8 детей в группе. Каждый ребёнок на виду и важен.</p></div>
+      <div class="wi"><div class="wii"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Гарантия результата</h3><p>Нет прогресса за 3 месяца — вернём деньги.</p></div>
+      <div class="wi"><div class="wii"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div><h3>Онлайн-кабинет</h3><p>Прогресс и задания — в приложении в любое время.</p></div>
+      <div class="wi"><div class="wii"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><h3>Любовь к делу</h3><p>Кристина и команда — наставники для каждого ребёнка.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ REVIEWS ═══════════════════ -->
+<section class="sec reviews" id="results">
+  <div class="w">
+    <div class="sh">
+      <p class="lb">Отзывы</p>
+      <h2 class="st">Родители <em>о нас</em></h2>
+    </div>
+    <div class="rg">
+      <div class="rv">
+        <div class="rvs">★★★★★</div>
+        <p class="rvt">«Дочка пошла на ментальную арифметику в 6 лет. Уже через полгода считает трёхзначные числа быстрее меня! Педагоги — просто находка, Настя обожает занятия.»</p>
+        <div class="rva"><div class="av av-or av40">М</div><div><strong>Мария</strong><span>мама Насти, 7 лет</span></div></div>
+      </div>
+      <div class="rv">
+        <div class="rvs">★★★★★</div>
+        <p class="rvt">«Сын читал по слогам, переживали перед школой. За 3 месяца занятий — читает бегло и сам берёт книги. Спасибо Кристине и всей команде!»</p>
+        <div class="rva"><div class="av av-bl av40">А</div><div><strong>Алексей</strong><span>папа Кирилла, 6 лет</span></div></div>
+      </div>
+      <div class="rv">
+        <div class="rvs">★★★★★</div>
+        <p class="rvt">«Скептически отнеслась к спидкубингу, но сын занял 2-е место на городских соревнованиях. Уверенность выросла и в учёбе тоже!»</p>
+        <div class="rva"><div class="av av-gn av40">О</div><div><strong>Ольга</strong><span>мама Дениса, 10 лет</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SIGNUP ═══════════════════ -->
+<section class="sec signup" id="signup">
+  <div class="w">
+    <div class="sg">
+
+      <div class="sgl">
+        <p class="lb">Бесплатно</p>
+        <h2 class="sgt">Первое занятие — <em>в подарок</em></h2>
+        <p class="sgd">Ребёнок попробует, вы увидите результат — а потом решите. Без обязательств.</p>
+        <ul class="sgli">
+          <li><span class="sgck">✓</span> Педагог подберёт курс индивидуально</li>
+          <li><span class="sgck">✓</span> Ответим в течение 15 минут</li>
+          <li><span class="sgck">✓</span> Никакого давления и навязывания</li>
+        </ul>
+        <div class="sgim">
+          <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=600&q=80&auto=format&fit=crop" alt="Ребёнок на занятии"/>
+        </div>
+      </div>
+
+      <div class="sgfw">
+        <div class="ftabs">
+          <button class="ftab on" data-tab="par">Родителям</button>
+          <button class="ftab"    data-tab="tea">Педагогам</button>
+        </div>
+
+        <div class="fb" id="tab-par">
+          <div class="fld"><input type="text" id="p-n" class="fi" placeholder=" "/><label class="fl">Ваше имя</label></div>
+          <div class="fld"><input type="text" id="p-c" class="fi" placeholder=" "/><label class="fl">Имя и возраст ребёнка</label></div>
+          <div class="fld"><input type="tel"  id="p-p" class="fi ftel" placeholder=" "/><label class="fl">Телефон</label></div>
+          <div class="fld">
+            <select id="p-co" class="fi fsel">
+              <option value="" disabled selected></option>
+              <option>Ментальная арифметика</option>
+              <option>Скорочтение</option>
+              <option>Подготовка к школе</option>
+              <option>Обучение чтению</option>
+              <option>Спидкубинг</option>
+              <option>Помогите выбрать</option>
+            </select>
+            <label class="fl">Интересующий курс</label>
+          </div>
+          <button class="btn-sub" onclick="formSub('p')">
+            Записаться на пробный урок
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <p class="fnote">Нажимая кнопку, вы соглашаетесь с <a href="#">политикой конфиденциальности</a></p>
+        </div>
+
+        <div class="fb hid" id="tab-tea">
+          <div class="fld"><input type="text" id="t-n" class="fi" placeholder=" "/><label class="fl">Ваше имя</label></div>
+          <div class="fld"><input type="tel"  id="t-p" class="fi ftel" placeholder=" "/><label class="fl">Телефон</label></div>
+          <div class="fld">
+            <select id="t-d" class="fi fsel">
+              <option value="" disabled selected></option>
+              <option>Ментальная арифметика</option>
+              <option>Скорочтение</option>
+              <option>Подготовка к школе</option>
+              <option>Обучение чтению</option>
+              <option>Спидкубинг</option>
+            </select>
+            <label class="fl">Направление</label>
+          </div>
+          <button class="btn-sub" onclick="formSub('t')">
+            Хочу работать в Amakids
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ JOBS ═══════════════════ -->
+<section class="jobs" id="jobs">
+  <div class="w jbin">
+    <div class="jbtx">
+      <p class="lb lt">Вакансии</p>
+      <h2 class="jbt">Работайте там, где <em>важен каждый</em></h2>
+      <p class="jbsub">Ищем педагогов, которые любят детей и хотят расти вместе с нами.</p>
+      <div class="jbps">
+        <div class="jp"><span>→</span> Обучение и сертификация за наш счёт</div>
+        <div class="jp"><span>→</span> Гибкий график под вас</div>
+        <div class="jp"><span>→</span> Достойная оплата + премии</div>
+        <div class="jp"><span>→</span> Карьерный рост внутри сети</div>
+      </div>
+    </div>
+    <div class="jbimg">
+      <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=700&q=80&auto=format&fit=crop" alt="Педагог с детьми"/>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CONTACTS ═══════════════════ -->
+<section class="sec contacts" id="contacts">
+  <div class="w">
+    <div class="sh">
+      <p class="lb">Контакты</p>
+      <h2 class="st">Приходите <em>к нам</em></h2>
+    </div>
+    <div class="contg">
+      <div class="cb">
+        <div class="cbico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h4>Адрес</h4><p>ул. Примерная, 1<br/>Ваш город</p>
+      </div>
+      <div class="cb">
+        <div class="cbico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.29h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.43a16 16 0 0 0 5.66 5.66l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.07 16z"/></svg></div>
+        <h4>Телефон</h4><p><a href="tel:+79000000000">+7 (900) 000-00-00</a></p>
+      </div>
+      <div class="cb">
+        <div class="cbico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <h4>Режим работы</h4><p>Пн–Пт: 9:00–19:00<br/>Суббота: 9:00–14:00</p>
+      </div>
+      <div class="cb">
+        <div class="cbico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h4>Мессенджеры</h4>
+        <div class="cbbtns">
+          <a href="#" class="cbbtn wa">WhatsApp</a>
+          <a href="#" class="cbbtn tg">Telegram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="ftr">
+  <div class="w ftrin">
+    <a href="#" class="logo logo-f">ama<span>kids</span></a>
+    <p>© 2025 Amakids. Центр развития детей</p>
+    <a href="#" class="ftra">Политика конфиденциальности</a>
+  </div>
+</footer>
+
+<!-- ═══════════════════ MODAL ═══════════════════ -->
+<div class="modal" id="modal">
+  <button class="mcl" onclick="closeModal()">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <div class="mico">✓</div>
+  <h3>Заявка отправлена!</h3>
+  <p id="mtx">Свяжемся с вами в течение 15 минут.</p>
+  <button class="btn-sub" onclick="closeModal()">Отлично!</button>
+</div>
+<div class="mover" id="mover" onclick="closeModal()"></div>
+
+<script src="js/main.js"></script>
 </body>
 </html>
