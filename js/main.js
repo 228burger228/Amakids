@@ -156,17 +156,23 @@ function submitForm(type) {
     return;
   }
 
-  // ─── Здесь подключи Telegram-бот ───────────────────────────
-  // const BOT_TOKEN = 'ВАШ_ТОКЕН';
-  // const CHAT_ID   = 'ВАШ_CHAT_ID';
-  // const message   = isParent
-  //   ? `📩 Новая заявка от родителя!\nИмя: ${name}\nТел: ${phone}\nКурс: ${extra}`
-  //   : `👩‍🏫 Новый педагог!\nИмя: ${name}\nТел: ${phone}\nНаправление: ${extra}`;
-  // fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify({ chat_id: CHAT_ID, text: message })
-  // });
+  // ─── FORMSPREE — заявки на email ───────────────────────────
+  // Замени XXXXXXXX на свой ID с formspree.io
+  const FORMSPREE_ID = 'xwvngwwa';
+
+  const subject = isParent
+    ? `Новая заявка от родителя — ${extra}`
+    : `Новый педагог — ${extra}`;
+
+  const body = isParent
+    ? { _subject: subject, Тип: 'Родитель', Имя: name, Телефон: phone, Курс: extra }
+    : { _subject: subject, Тип: 'Педагог',  Имя: name, Телефон: phone, Направление: extra };
+
+  fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(body)
+  }).catch(() => {}); // молча игнорируем ошибку сети — окно всё равно откроется
   // ───────────────────────────────────────────────────────────
 
   // Показать модальное окно
