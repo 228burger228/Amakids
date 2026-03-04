@@ -1,94 +1,75 @@
 /* ============================================================
-   AMAKIDS — main.js
+   AMAKIDS МАРЬИНО — main.js
    ============================================================ */
 
 /* ── 1. PRELOADER ─────────────────────────────────────────── */
 window.addEventListener('load', () => {
   setTimeout(() => {
-    document.getElementById('pre').classList.add('gone');
+    // Скрыть preloader
+    const pre = document.getElementById('preloader');
+    if (pre) pre.classList.add('gone');
 
-    // Ken-Burns на фоне
-    document.getElementById('hbg-img')?.classList.add('z');
+    // Ken-Burns эффект на фоне hero
+    const heroImg = document.getElementById('hero-img');
+    if (heroImg) heroImg.classList.add('zoomed');
 
     // Реакции детей — появляются по очереди
-    document.querySelectorAll('.rc').forEach(card => {
-      const delay = parseInt(card.dataset.d || 0);
-      setTimeout(() => card.classList.add('on'), delay);
+    document.querySelectorAll('.reaction-card').forEach(card => {
+      const delay = parseInt(card.dataset.delay || 0);
+      setTimeout(() => card.classList.add('visible'), delay);
     });
 
-    // Счётчики цифр
-    document.querySelectorAll('[data-cnt]').forEach(el => {
-      const target   = parseInt(el.dataset.cnt);
-      const duration = 1800;
-      const start    = performance.now();
-      const tick = now => {
-        const p = Math.min((now - start) / duration, 1);
-        const e = 1 - Math.pow(1 - p, 3);          // ease-out cubic
-        el.textContent = Math.round(e * target);
-        if (p < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-    });
-
+    // Счётчики в статистике
+    runCounters();
   }, 1600);
 });
 
-/* ── 2. CUSTOM CURSOR ─────────────────────────────────────── */
-const curDot  = document.getElementById('cur');
-const curRing = document.getElementById('cur2');
-let mx = 0, my = 0, rx = 0, ry = 0;
-
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  if (curDot) { curDot.style.left = mx + 'px'; curDot.style.top = my + 'px'; }
-});
-
-(function animRing() {
-  rx += (mx - rx) * 0.1;
-  ry += (my - ry) * 0.1;
-  if (curRing) { curRing.style.left = rx + 'px'; curRing.style.top = ry + 'px'; }
-  requestAnimationFrame(animRing);
-})();
-
-document.querySelectorAll('a, button').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    if (curDot)  curDot.style.transform  = 'translate(-50%,-50%) scale(2.5)';
-    if (curRing) curRing.style.opacity   = '.12';
+/* ── 2. СЧЁТЧИКИ ──────────────────────────────────────────── */
+function runCounters() {
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const target = parseInt(el.dataset.count);
+    const duration = 1800;
+    const startTime = performance.now();
+    const tick = (now) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      el.textContent = Math.round(eased * target);
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
   });
-  el.addEventListener('mouseleave', () => {
-    if (curDot)  curDot.style.transform  = 'translate(-50%,-50%) scale(1)';
-    if (curRing) curRing.style.opacity   = '.4';
-  });
-});
+}
 
-/* ── 3. HEADER ────────────────────────────────────────────── */
-const hdr = document.getElementById('hdr');
-const bur = document.getElementById('bur');
-const nav = document.getElementById('nav');
-
+/* ── 3. HEADER — scrolled-класс ──────────────────────────── */
+const header = document.getElementById('header');
 window.addEventListener('scroll', () => {
-  hdr.classList.toggle('on', window.scrollY > 40);
+  if (header) header.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
 
-bur?.addEventListener('click', () => {
-  bur.classList.toggle('on');
-  nav.classList.toggle('on');
-  document.body.style.overflow = nav.classList.contains('on') ? 'hidden' : '';
-});
+/* ── 4. BURGER-МЕНЮ ───────────────────────────────────────── */
+const burger = document.getElementById('burger');
+const nav    = document.getElementById('nav');
 
-// Закрыть меню при клике на ссылку
-document.querySelectorAll('.na, .nb').forEach(a => {
-  a.addEventListener('click', () => {
-    bur?.classList.remove('on');
-    nav?.classList.remove('on');
-    document.body.style.overflow = '';
+if (burger && nav) {
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    nav.classList.toggle('open');
+    document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
   });
-});
+  // Закрыть по клику на ссылку
+  document.querySelectorAll('.nav-link, .btn-orange, .btn-outline-nav').forEach(link => {
+    link.addEventListener('click', () => {
+      burger.classList.remove('open');
+      nav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+}
 
-/* ── 4. SMOOTH SCROLL ─────────────────────────────────────── */
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
+/* ── 5. ПЛАВНЫЙ СКРОЛЛ ────────────────────────────────────── */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', e => {
+    const target = document.querySelector(anchor.getAttribute('href'));
     if (!target) return;
     e.preventDefault();
     window.scrollTo({
@@ -98,96 +79,121 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-/* ── 5. SCROLL REVEAL ─────────────────────────────────────── */
-const revObs = new IntersectionObserver(entries => {
+/* ── 6. SCROLL REVEAL ─────────────────────────────────────── */
+const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('vis');
-      revObs.unobserve(entry.target);
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
     }
   });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.cc, .wi, .rv, .cb').forEach((el, i) => {
-  el.classList.add('sr');
+// Добавляем класс reveal на карточки
+document.querySelectorAll(
+  '.course-card, .why-item, .review-card, .contact-card'
+).forEach((el, i) => {
+  el.classList.add('reveal');
   el.style.transitionDelay = (i % 4) * 0.09 + 's';
-  revObs.observe(el);
+  revealObserver.observe(el);
 });
 
-/* ── 6. FORM TABS ─────────────────────────────────────────── */
-document.querySelectorAll('.ftab').forEach(tab => {
+/* ── 7. FORM TABS ─────────────────────────────────────────── */
+document.querySelectorAll('.form-tab').forEach(tab => {
   tab.addEventListener('click', () => {
-    document.querySelectorAll('.ftab').forEach(t => t.classList.remove('on'));
-    document.querySelectorAll('.fb').forEach(b => b.classList.add('hid'));
-    tab.classList.add('on');
-    document.getElementById('tab-' + tab.dataset.tab)?.classList.remove('hid');
+    // Снять active у всех табов
+    document.querySelectorAll('.form-tab').forEach(t => t.classList.remove('active'));
+    // Скрыть все тела формы
+    document.querySelectorAll('.form-body').forEach(b => b.classList.add('hidden'));
+    // Активировать нажатый
+    tab.classList.add('active');
+    const formId = 'form-' + tab.dataset.tab;
+    const formBody = document.getElementById(formId);
+    if (formBody) formBody.classList.remove('hidden');
   });
 });
 
-/* ── 7. SELECT — floating label fix ──────────────────────── */
-document.querySelectorAll('.fsel').forEach(sel => {
-  sel.addEventListener('change', () => sel.classList.toggle('hv', !!sel.value));
+/* ── 8. SELECT — floating label ──────────────────────────── */
+document.querySelectorAll('.form-select').forEach(sel => {
+  sel.addEventListener('change', () => {
+    sel.classList.toggle('has-val', !!sel.value);
+  });
 });
 
-/* ── 8. PHONE MASK ────────────────────────────────────────── */
-document.querySelectorAll('.ftel').forEach(input => {
+/* ── 9. МАСКА ТЕЛЕФОНА ────────────────────────────────────── */
+document.querySelectorAll('.phone-input').forEach(input => {
   input.addEventListener('input', e => {
     let v = e.target.value.replace(/\D/g, '');
     if (v.startsWith('8')) v = '7' + v.slice(1);
-    if (!v.startsWith('7')) return;
+    if (!v.startsWith('7') && v.length > 0) v = '7' + v;
     v = v.slice(0, 11);
-    e.target.value = [
-      '+7',
-      v.length > 1 ? ` (${v.slice(1, 4)}`  : '',
-      v.length > 4 ? `) ${v.slice(4, 7)}`  : '',
-      v.length > 7 ? `-${v.slice(7, 9)}`   : '',
-      v.length > 9 ? `-${v.slice(9, 11)}`  : '',
-    ].join('');
+    let result = '+7';
+    if (v.length > 1) result += ' (' + v.slice(1, 4);
+    if (v.length >= 4) result += ') ' + v.slice(4, 7);
+    if (v.length >= 7) result += '-' + v.slice(7, 9);
+    if (v.length >= 9) result += '-' + v.slice(9, 11);
+    e.target.value = result;
   });
 });
 
-/* ── 9. FORM SUBMIT ───────────────────────────────────────── */
-function formSub(type) {
-  const isP  = type === 'p';
-  const name  = document.getElementById(isP ? 'p-n'  : 't-n')?.value.trim();
-  const phone = document.getElementById(isP ? 'p-p'  : 't-p')?.value.trim();
-  const extra = document.getElementById(isP ? 'p-co' : 't-d')?.value;
+/* ── 10. ОТПРАВКА ФОРМЫ ───────────────────────────────────── */
+function submitForm(type) {
+  const isParent = type === 'parents';
 
+  const name  = document.getElementById(isParent ? 'p-name'  : 't-name')?.value.trim();
+  const phone = document.getElementById(isParent ? 'p-phone' : 't-phone')?.value.trim();
+  const extra = document.getElementById(isParent ? 'p-course' : 't-dir')?.value;
+
+  // Валидация
   if (!name || !phone || !extra) {
-    const wrap = document.getElementById(isP ? 'tab-par' : 'tab-tea');
-    wrap.style.animation = 'shake .4s ease';
-    wrap.addEventListener('animationend', () => { wrap.style.animation = ''; }, { once: true });
+    const formWrap = document.getElementById(isParent ? 'form-parents' : 'form-teachers');
+    if (formWrap) {
+      formWrap.style.animation = 'shake .4s ease';
+      formWrap.addEventListener('animationend', () => {
+        formWrap.style.animation = '';
+      }, { once: true });
+    }
     return;
   }
 
-  // ► Сюда можно подключить отправку в Telegram-бот:
-  // const BOT  = 'ВАШ_ТОКЕН';
-  // const CHAT = 'ВАШ_CHAT_ID';
-  // const text = `Новая заявка!\nИмя: ${name}\nТел: ${phone}\nКурс: ${extra}`;
-  // fetch(`https://api.telegram.org/bot${BOT}/sendMessage`,{
-  //   method:'POST', headers:{'Content-Type':'application/json'},
-  //   body: JSON.stringify({ chat_id: CHAT, text })
+  // ─── Здесь подключи Telegram-бот ───────────────────────────
+  // const BOT_TOKEN = 'ВАШ_ТОКЕН';
+  // const CHAT_ID   = 'ВАШ_CHAT_ID';
+  // const message   = isParent
+  //   ? `📩 Новая заявка от родителя!\nИмя: ${name}\nТел: ${phone}\nКурс: ${extra}`
+  //   : `👩‍🏫 Новый педагог!\nИмя: ${name}\nТел: ${phone}\nНаправление: ${extra}`;
+  // fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify({ chat_id: CHAT_ID, text: message })
   // });
+  // ───────────────────────────────────────────────────────────
 
-  const msg = isP
-    ? 'Мы свяжемся с вами в течение 15 минут и подберём удобное время!'
-    : 'Кристина рассмотрит вашу заявку и свяжется с вами в ближайшее время!';
-
-  document.getElementById('mtx').textContent = msg;
-  document.getElementById('modal').classList.add('on');
-  document.getElementById('mover').classList.add('on');
+  // Показать модальное окно
+  const modalText = document.getElementById('modal-text');
+  if (modalText) {
+    modalText.textContent = isParent
+      ? 'Мы свяжемся с вами в течение 15 минут и подберём удобное время!'
+      : 'Кристина рассмотрит вашу заявку и свяжется с вами в ближайшее время!';
+  }
+  document.getElementById('modal')?.classList.add('open');
+  document.getElementById('modal-overlay')?.classList.add('open');
   document.body.style.overflow = 'hidden';
 
-  // Очистка полей
-  document.getElementById(isP ? 'tab-par' : 'tab-tea')
-    ?.querySelectorAll('input, select')
-    .forEach(el => { el.value = ''; el.classList.remove('hv'); });
+  // Очистить поля формы
+  const formEl = document.getElementById(isParent ? 'form-parents' : 'form-teachers');
+  if (formEl) {
+    formEl.querySelectorAll('input, select').forEach(el => {
+      el.value = '';
+      el.classList.remove('has-val');
+    });
+  }
 }
 
-/* ── 10. MODAL CLOSE ──────────────────────────────────────── */
+/* ── 11. ЗАКРЫТИЕ МОДАЛЬНОГО ОКНА ────────────────────────── */
 function closeModal() {
-  document.getElementById('modal')?.classList.remove('on');
-  document.getElementById('mover')?.classList.remove('on');
+  document.getElementById('modal')?.classList.remove('open');
+  document.getElementById('modal-overlay')?.classList.remove('open');
   document.body.style.overflow = '';
 }
 
