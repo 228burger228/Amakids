@@ -1,25 +1,21 @@
 /* ============================================================
-   AMAKIDS МАРЬИНО — main.js
+   АКАДЕМИКА — main.js
    ============================================================ */
 
 /* ── 1. PRELOADER ─────────────────────────────────────────── */
 window.addEventListener('load', () => {
   setTimeout(() => {
-    // Скрыть preloader
     const pre = document.getElementById('preloader');
     if (pre) pre.classList.add('gone');
 
-    // Ken-Burns эффект на фоне hero
     const heroImg = document.getElementById('hero-img');
     if (heroImg) heroImg.classList.add('zoomed');
 
-    // Реакции детей — появляются по очереди
     document.querySelectorAll('.reaction-card').forEach(card => {
       const delay = parseInt(card.dataset.delay || 0);
       setTimeout(() => card.classList.add('visible'), delay);
     });
 
-    // Счётчики в статистике
     runCounters();
   }, 1600);
 });
@@ -32,7 +28,7 @@ function runCounters() {
     const startTime = performance.now();
     const tick = (now) => {
       const progress = Math.min((now - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
       el.textContent = Math.round(eased * target);
       if (progress < 1) requestAnimationFrame(tick);
     };
@@ -40,7 +36,7 @@ function runCounters() {
   });
 }
 
-/* ── 3. HEADER — scrolled-класс ──────────────────────────── */
+/* ── 3. HEADER ────────────────────────────────────────────── */
 const header = document.getElementById('header');
 window.addEventListener('scroll', () => {
   if (header) header.classList.toggle('scrolled', window.scrollY > 40);
@@ -56,7 +52,6 @@ if (burger && nav) {
     nav.classList.toggle('open');
     document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
   });
-  // Закрыть по клику на ссылку
   document.querySelectorAll('.nav-link, .btn-orange, .btn-outline-nav').forEach(link => {
     link.addEventListener('click', () => {
       burger.classList.remove('open');
@@ -89,10 +84,7 @@ const revealObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 
-// Добавляем класс reveal на карточки
-document.querySelectorAll(
-  '.course-card, .why-item, .review-card, .contact-card'
-).forEach((el, i) => {
+document.querySelectorAll('.course-card, .why-item, .review-card, .contact-card').forEach((el, i) => {
   el.classList.add('reveal');
   el.style.transitionDelay = (i % 4) * 0.09 + 's';
   revealObserver.observe(el);
@@ -101,23 +93,17 @@ document.querySelectorAll(
 /* ── 7. FORM TABS ─────────────────────────────────────────── */
 document.querySelectorAll('.form-tab').forEach(tab => {
   tab.addEventListener('click', () => {
-    // Снять active у всех табов
     document.querySelectorAll('.form-tab').forEach(t => t.classList.remove('active'));
-    // Скрыть все тела формы
     document.querySelectorAll('.form-body').forEach(b => b.classList.add('hidden'));
-    // Активировать нажатый
     tab.classList.add('active');
-    const formId = 'form-' + tab.dataset.tab;
-    const formBody = document.getElementById(formId);
+    const formBody = document.getElementById('form-' + tab.dataset.tab);
     if (formBody) formBody.classList.remove('hidden');
   });
 });
 
-/* ── 8. SELECT — floating label ──────────────────────────── */
+/* ── 8. SELECT floating label ─────────────────────────────── */
 document.querySelectorAll('.form-select').forEach(sel => {
-  sel.addEventListener('change', () => {
-    sel.classList.toggle('has-val', !!sel.value);
-  });
+  sel.addEventListener('change', () => sel.classList.toggle('has-val', !!sel.value));
 });
 
 /* ── 9. МАСКА ТЕЛЕФОНА ────────────────────────────────────── */
@@ -127,43 +113,36 @@ document.querySelectorAll('.phone-input').forEach(input => {
     if (v.startsWith('8')) v = '7' + v.slice(1);
     if (!v.startsWith('7') && v.length > 0) v = '7' + v;
     v = v.slice(0, 11);
-    let result = '+7';
-    if (v.length > 1) result += ' (' + v.slice(1, 4);
-    if (v.length >= 4) result += ') ' + v.slice(4, 7);
-    if (v.length >= 7) result += '-' + v.slice(7, 9);
-    if (v.length >= 9) result += '-' + v.slice(9, 11);
-    e.target.value = result;
+    let r = '+7';
+    if (v.length > 1) r += ' (' + v.slice(1, 4);
+    if (v.length >= 4) r += ') ' + v.slice(4, 7);
+    if (v.length >= 7) r += '-' + v.slice(7, 9);
+    if (v.length >= 9) r += '-' + v.slice(9, 11);
+    e.target.value = r;
   });
 });
 
 /* ── 10. ОТПРАВКА ФОРМЫ ───────────────────────────────────── */
 function submitForm(type) {
   const isParent = type === 'parents';
-
   const name  = document.getElementById(isParent ? 'p-name'  : 't-name')?.value.trim();
   const phone = document.getElementById(isParent ? 'p-phone' : 't-phone')?.value.trim();
   const extra = document.getElementById(isParent ? 'p-course' : 't-dir')?.value;
 
-  // Валидация
   if (!name || !phone || !extra) {
-    const formWrap = document.getElementById(isParent ? 'form-parents' : 'form-teachers');
-    if (formWrap) {
-      formWrap.style.animation = 'shake .4s ease';
-      formWrap.addEventListener('animationend', () => {
-        formWrap.style.animation = '';
-      }, { once: true });
+    const wrap = document.getElementById(isParent ? 'form-parents' : 'form-teachers');
+    if (wrap) {
+      wrap.style.animation = 'shake .4s ease';
+      wrap.addEventListener('animationend', () => { wrap.style.animation = ''; }, { once: true });
     }
     return;
   }
 
-  // ─── FORMSPREE — заявки на email ───────────────────────────
-  // Замени XXXXXXXX на свой ID с formspree.io
+  // ── Formspree — заявки на email ──────────────────────────────
   const FORMSPREE_ID = 'xwvngwwa';
-
   const subject = isParent
     ? `Новая заявка от родителя — ${extra}`
     : `Новый педагог — ${extra}`;
-
   const body = isParent
     ? { _subject: subject, Тип: 'Родитель', Имя: name, Телефон: phone, Курс: extra }
     : { _subject: subject, Тип: 'Педагог',  Имя: name, Телефон: phone, Направление: extra };
@@ -172,10 +151,9 @@ function submitForm(type) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body: JSON.stringify(body)
-  }).catch(() => {}); // молча игнорируем ошибку сети — окно всё равно откроется
-  // ───────────────────────────────────────────────────────────
+  }).catch(() => {});
+  // ─────────────────────────────────────────────────────────────
 
-  // Показать модальное окно
   const modalText = document.getElementById('modal-text');
   if (modalText) {
     modalText.textContent = isParent
@@ -186,14 +164,9 @@ function submitForm(type) {
   document.getElementById('modal-overlay')?.classList.add('open');
   document.body.style.overflow = 'hidden';
 
-  // Очистить поля формы
-  const formEl = document.getElementById(isParent ? 'form-parents' : 'form-teachers');
-  if (formEl) {
-    formEl.querySelectorAll('input, select').forEach(el => {
-      el.value = '';
-      el.classList.remove('has-val');
-    });
-  }
+  document.getElementById(isParent ? 'form-parents' : 'form-teachers')
+    ?.querySelectorAll('input, select')
+    .forEach(el => { el.value = ''; el.classList.remove('has-val'); });
 }
 
 /* ── 11. ЗАКРЫТИЕ МОДАЛЬНОГО ОКНА ────────────────────────── */
@@ -203,7 +176,4 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-// Закрыть по Escape
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeModal();
-});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
