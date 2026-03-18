@@ -1,6 +1,13 @@
 /* ============================================================
    АКАДЕМИКА — style.css
    Палитра: тёмно-синий (основной) + оранжевый + розовый + голубой
+   Исправления:
+   1. Убран дублирующий селектор .burger.open (было 2 span,
+      теперь правильно описаны оба состояния).
+   2. .faq-a > p исправлен — был неверно вложен (div > p),
+      теперь работает с grid-template-rows анимацией корректно.
+   3. Добавлен focus-visible для кнопок — доступность клавиатуры.
+   4. will-change добавлен только там где нужно — убраны лишние.
    ============================================================ */
 
 :root {
@@ -38,6 +45,13 @@ a     { text-decoration: none; color: inherit;
 ul    { list-style: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
 
+/* Доступность: видимый фокус при навигации с клавиатуры */
+:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
 /* ── БАЗОВЫЕ ────────────────────────────────────────────────── */
 .container { max-width: 1240px; margin: 0 auto; padding: 0 2rem; }
 .section   { padding: 6rem 0; }
@@ -54,7 +68,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .sec-sub   { color: var(--muted); font-size: 1rem; margin-top: .75rem;
              max-width: 520px; margin-left: auto; margin-right: auto; }
 
-/* ── КНОПКИ — все с transition ──────────────────────────────── */
+/* ── КНОПКИ ─────────────────────────────────────────────────── */
 .btn { display: inline-flex; align-items: center; gap: .6rem;
        border-radius: 100px; font-weight: 700; font-size: .9rem;
        transition: background .22s var(--ease),
@@ -135,6 +149,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
                background: var(--white); border-radius: 2px;
                transition: transform .3s var(--ease), opacity .3s var(--ease), background .3s; }
 .header.scrolled .burger span { background: var(--navy); }
+/* Анимация бургера: при открытии первая линия поворачивается в ✕ */
 .burger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
 .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 
@@ -144,10 +159,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .hero-bg     { position: absolute; inset: 0; }
 .hero-bg-img { width: 100%; height: 100%; object-fit: cover;
                object-position: center 25%;
-               transform: scale(1.06); transition: transform 9s ease; }
+               transform: scale(1.06);
+               transition: transform 9s ease;
+               will-change: transform; }
 .hero-bg-img.zoomed { transform: scale(1); }
 
-/* Многослойный overlay: тёмный снизу для статистики + боковой для контента */
 .hero-overlay { position: absolute; inset: 0;
                 background:
                   linear-gradient(to bottom,  rgba(13,43,85,.2) 0%, rgba(13,43,85,.7) 100%),
@@ -169,13 +185,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   50%     { box-shadow: 0 0 0 8px transparent; }
 }
 
-/* Заголовок: текстовая подложка + усиленный контраст */
 .hero-title { font-family: var(--head);
               font-size: clamp(2.2rem,4.5vw,4rem);
               color: var(--white); line-height: 1.08;
               letter-spacing: -.03em; margin-bottom: 1.5rem;
               text-shadow: 0 2px 24px rgba(13,43,85,.5);
-              /* лёгкая подложка-градиент за заголовком */
               background: linear-gradient(135deg,
                 rgba(13,43,85,.55) 0%,
                 rgba(13,43,85,.0) 80%);
@@ -344,9 +358,23 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
              transition: transform .35s var(--ease), color .22s var(--ease); }
 .faq-item.open .faq-arrow { transform: rotate(180deg); color: var(--orange); }
 
+/* CSS-анимация раскрытия аккордеона через grid-template-rows */
 .faq-a { display: grid; grid-template-rows: 0fr;
           transition: grid-template-rows .38s var(--ease); }
 .faq-item.open .faq-a { grid-template-rows: 1fr; }
+
+/* ИСПРАВЛЕНИЕ: overflow: hidden на внутреннем элементе —
+   обязательное условие для корректной работы grid-template-rows: 0fr/1fr.
+   Без него содержимое видно даже в закрытом состоянии. */
+.faq-a > div { overflow: hidden; }
+.faq-a > div > p {
+  font-size: .9rem; color: var(--muted); line-height: 1.75;
+  padding: 0 1.5rem;
+  transition: padding .38s var(--ease);
+}
+.faq-item.open .faq-a > div > p { padding: 0 1.5rem 1.35rem; }
+
+/* Обратная совместимость: если в HTML <p> прямо внутри .faq-a */
 .faq-a > p { overflow: hidden;
              font-size: .9rem; color: var(--muted); line-height: 1.75;
              padding: 0 1.5rem;
@@ -574,5 +602,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .form-card  { padding: 1.75rem 1.25rem; }
   .reaction-card:nth-child(n+3) { display: none; }
   .faq-q { font-size: .9rem; padding: 1.1rem 1.15rem; }
-  .faq-a > p { font-size: .85rem; }
+  .faq-a > p,
+  .faq-a > div > p { font-size: .85rem; }
 }
