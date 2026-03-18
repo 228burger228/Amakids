@@ -1,40 +1,50 @@
 /* ============================================================
    АКАДЕМИКА — main.js
-   Senior Frontend: IMask, FAQ-accordion, Formspree, reveal
+   Исправления:
+   1. Убрана искусственная задержка setTimeout 1600ms в preloader.
+      Прелоадер скрывается сразу по событию window 'load' —
+      то есть как только браузер реально закончил загрузку.
+   2. Кнопки форм переведены на addEventListener вместо
+      inline onclick="submitForm(...)" в HTML.
+   3. Кнопки закрытия модального окна — тоже через addEventListener.
+   4. Escape-клавиша и оверлей закрывают модальное окно.
+   5. Маски телефона инициализируются после DOMContentLoaded,
+      т.к. IMask загружается с defer.
    ============================================================ */
 
-/* ══ 1. PRELOADER + HERO INIT ════════════════════════════════ */
+/* ══ 1. PRELOADER + HERO INIT ════════════════════════════════
+   window 'load' срабатывает когда все ресурсы (включая картинки)
+   загружены. Без setTimeout — никаких искусственных задержек.     */
 window.addEventListener('load', () => {
-  setTimeout(() => {
-    // Скрыть preloader
-    const pre = document.getElementById('preloader');
-    if (pre) pre.classList.add('gone');
+  const pre = document.getElementById('preloader');
+  if (pre) pre.classList.add('gone');
 
-    // Ken-Burns на фоне hero
-    const heroImg = document.getElementById('hero-img');
-    if (heroImg) heroImg.classList.add('zoomed');
+  /* Ken-Burns на фоне hero */
+  const heroImg = document.getElementById('hero-img');
+  if (heroImg) heroImg.classList.add('zoomed');
 
-    // Реакции детей — появляются каскадом
-    document.querySelectorAll('.reaction-card').forEach(card => {
-      setTimeout(() => card.classList.add('visible'),
-        parseInt(card.dataset.delay || 0));
-    });
+  /* Реакции детей — появляются каскадом по data-delay */
+  document.querySelectorAll('.reaction-card').forEach(card => {
+    setTimeout(
+      () => card.classList.add('visible'),
+      parseInt(card.dataset.delay || 0, 10)
+    );
+  });
 
-    // Запустить счётчики
-    runCounters();
-  }, 1600);
+  /* Запустить счётчики */
+  runCounters();
 });
 
 /* ══ 2. СЧЁТЧИКИ ══════════════════════════════════════════════ */
 function runCounters() {
   document.querySelectorAll('[data-count]').forEach(el => {
-    const target   = parseInt(el.dataset.count);
+    const target   = parseInt(el.dataset.count, 10);
     const duration = 1800;
     const start    = performance.now();
 
     const tick = (now) => {
       const p     = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3); // ease-out cubic
+      const eased = 1 - Math.pow(1 - p, 3); /* ease-out cubic */
       el.textContent = Math.round(eased * target);
       if (p < 1) requestAnimationFrame(tick);
     };
@@ -59,7 +69,7 @@ if (burger && nav) {
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
 
-  // Закрыть по клику на ссылку/кнопку внутри nav
+  /* Закрыть по клику на ссылку/кнопку внутри nav */
   nav.querySelectorAll('a, button').forEach(el => {
     el.addEventListener('click', () => {
       nav.classList.remove('open');
@@ -72,7 +82,9 @@ if (burger && nav) {
 /* ══ 5. ПЛАВНЫЙ СКРОЛЛ ═══════════════════════════════════════ */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
+    const id = a.getAttribute('href');
+    if (id === '#') return;
+    const target = document.querySelector(id);
     if (!target) return;
     e.preventDefault();
     window.scrollTo({
@@ -92,7 +104,6 @@ const revealObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12 });
 
-// Добавляем класс reveal + stagger всем карточкам
 document.querySelectorAll(
   '.course-card, .why-item, .review-card, .contact-card, .faq-item'
 ).forEach((el, i) => {
@@ -109,7 +120,7 @@ document.querySelectorAll('.faq-item').forEach(item => {
   btn.addEventListener('click', () => {
     const isOpen = item.classList.contains('open');
 
-    // Закрыть все остальные
+    /* Закрыть все остальные */
     document.querySelectorAll('.faq-item.open').forEach(other => {
       if (other !== item) {
         other.classList.remove('open');
@@ -117,7 +128,7 @@ document.querySelectorAll('.faq-item').forEach(item => {
       }
     });
 
-    // Переключить текущий
+    /* Переключить текущий */
     item.classList.toggle('open', !isOpen);
     btn.setAttribute('aria-expanded', String(!isOpen));
   });
@@ -139,108 +150,130 @@ document.querySelectorAll('.form-select').forEach(sel => {
 });
 
 /* ══ 10. IMASK — МАСКА ТЕЛЕФОНА ══════════════════════════════
-   Формат: +7 (926) 786-39-39
-   Вешается на все поля type="tel" после загрузки DOM           */
+   IMask загружается с атрибутом defer, поэтому инициализируем
+   маски только после DOMContentLoaded — когда скрипт точно
+   уже выполнился и глобальный объект IMask доступен.
+   Если IMask по каким-то причинам не загрузился — падаем на
+   ручной fallback без ошибок в консоли.                        */
 function initPhoneMasks() {
   document.querySelectorAll('input[type="tel"]').forEach(input => {
-    // Если IMask загружен — используем его
     if (typeof IMask !== 'undefined') {
       IMask(input, {
         mask: '+{7} (000) 000-00-00',
-        lazy: true,          // placeholder виден только при фокусе
+        lazy: true,
         placeholderChar: '_'
       });
     } else {
-      // Fallback: ручная маска на чистом JS
+      /* Fallback: ручная маска без библиотеки */
       input.addEventListener('input', e => {
         let v = e.target.value.replace(/\D/g, '');
         if (v.startsWith('8')) v = '7' + v.slice(1);
         if (v.length > 0 && !v.startsWith('7')) v = '7' + v;
         v = v.slice(0, 11);
         let r = '+7';
-        if (v.length > 1) r += ' (' + v.slice(1, 4);
+        if (v.length > 1)  r += ' (' + v.slice(1, 4);
         if (v.length >= 4) r += ') ' + v.slice(4, 7);
-        if (v.length >= 7) r += '-' + v.slice(7, 9);
-        if (v.length >= 9) r += '-' + v.slice(9, 11);
+        if (v.length >= 7) r += '-'  + v.slice(7, 9);
+        if (v.length >= 9) r += '-'  + v.slice(9, 11);
         e.target.value = r;
       });
     }
   });
 }
 
-// Запустить маски: если IMask ещё не успел загрузиться — подождём
+/* DOMContentLoaded гарантирует что defer-скрипт IMask уже выполнен */
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initPhoneMasks);
 } else {
   initPhoneMasks();
 }
 
-/* ══ 11. FORMSPREE — ОТПРАВКА ════════════════════════════════ */
+/* ══ 11. ФОРМЫ — кнопки через addEventListener ═══════════════
+   Было: onclick="submitForm('parents')" прямо в HTML.
+   Стало: обработчики навешиваются здесь — разделение логики и разметки. */
+document.getElementById('btn-parents')?.addEventListener('click', () => submitForm('parents'));
+document.getElementById('btn-teachers')?.addEventListener('click', () => submitForm('teachers'));
+
+/* ══ 12. FORMSPREE — ОТПРАВКА ════════════════════════════════ */
 function submitForm(type) {
   const isParent = type === 'parents';
 
   const nameEl  = document.getElementById(isParent ? 'p-name'  : 't-name');
   const phoneEl = document.getElementById(isParent ? 'p-phone' : 't-phone');
   const extraEl = document.getElementById(isParent ? 'p-course': 't-dir');
+  const childEl = isParent ? document.getElementById('p-child') : null;
 
   const name  = nameEl?.value.trim()  ?? '';
   const phone = phoneEl?.value.trim() ?? '';
   const extra = extraEl?.value        ?? '';
 
-  // ── Валидация ───────────────────────────────────────────────
+  /* ── Валидация ─────────────────────────────────────────────── */
   const formId = isParent ? 'form-parents' : 'form-teachers';
   if (!name || phone.replace(/\D/g, '').length < 11 || !extra) {
     const wrap = document.getElementById(formId);
     if (wrap) {
       wrap.style.animation = 'none';
-      wrap.offsetHeight;                         // reflow
+      /* Reflow — нужен чтобы анимация перезапустилась */
+      void wrap.offsetHeight;
       wrap.style.animation = 'shake .4s ease';
-      wrap.addEventListener('animationend',
-        () => { wrap.style.animation = ''; }, { once: true });
+      wrap.addEventListener('animationend', () => {
+        wrap.style.animation = '';
+      }, { once: true });
     }
     return;
   }
 
-  // ── Отправка в Formspree ────────────────────────────────────
-  const FORMSPREE_ID = 'xwvngwwa';   // ← ваш ID
+  /* ── Отправка в Formspree ──────────────────────────────────── */
+  const FORMSPREE_ID = 'xwvngwwa';
 
   const subject = isParent
     ? `Новая заявка от родителя — ${extra}`
     : `Новый педагог — ${extra}`;
 
   const payload = isParent
-    ? { _subject: subject, Тип: 'Родитель', Имя: name, Телефон: phone, Курс: extra }
+    ? { _subject: subject, Тип: 'Родитель', Имя: name, Телефон: phone, Ребёнок: childEl?.value.trim() ?? '', Курс: extra }
     : { _subject: subject, Тип: 'Педагог',  Имя: name, Телефон: phone, Направление: extra };
 
   fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
     method:  'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body:    JSON.stringify(payload)
-  }).catch(() => {});   // ошибки сети молча игнорируем — модалка открывается всегда
+  }).catch(() => {});
+  /* Ошибки сети не блокируют модальное окно — UX важнее */
 
-  // ── Успех: открыть модалку ───────────────────────────────────
+  /* ── Открыть модалку ──────────────────────────────────────── */
   const modalText = document.getElementById('modal-text');
   if (modalText) {
     modalText.textContent = isParent
       ? 'Мы свяжемся с вами в течение 15 минут и подберём удобное время!'
       : 'Кристина рассмотрит вашу заявку и свяжется в ближайшее время!';
   }
-  document.getElementById('modal')?.classList.add('open');
-  document.getElementById('modal-overlay')?.classList.add('open');
-  document.body.style.overflow = 'hidden';
+  openModal();
 
-  // ── Очистить поля ────────────────────────────────────────────
+  /* ── Очистить поля формы ──────────────────────────────────── */
   document.getElementById(formId)
     ?.querySelectorAll('input, select')
     .forEach(el => { el.value = ''; el.classList.remove('has-val'); });
 }
 
-/* ══ 12. ЗАКРЫТИЕ МОДАЛЬНОГО ОКНА ═══════════════════════════ */
+/* ══ 13. МОДАЛЬНОЕ ОКНО ══════════════════════════════════════
+   Было: closeModal() вызывался через inline onclick.
+   Стало: обработчики навешены здесь.                          */
+function openModal() {
+  document.getElementById('modal')?.classList.add('open');
+  document.getElementById('modal-overlay')?.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
 function closeModal() {
   document.getElementById('modal')?.classList.remove('open');
   document.getElementById('modal-overlay')?.classList.remove('open');
   document.body.style.overflow = '';
 }
+
+document.getElementById('modal-close')?.addEventListener('click', closeModal);
+document.getElementById('modal-ok')?.addEventListener('click', closeModal);
+document.getElementById('modal-overlay')?.addEventListener('click', closeModal);
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeModal();
